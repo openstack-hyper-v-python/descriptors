@@ -1,0 +1,33 @@
+- scm:
+   name: lxml-scm
+   scm:
+      - git:
+         url: git://github.com/openstack-hyper-v-python/lxml.git
+         branches:
+            - master
+
+- job:
+   name: lxml
+   properties:
+      - github:
+         url: https://github.com/openstack-hyper-v-python/lxml
+   project-type: freestyle
+   defaults: global
+   disabled: false
+   scm:
+      - lxml-scm
+   triggers:
+      - github
+      - build-result:
+         combine: true
+         cron: 'H/5 * * * *'
+         groups:
+            - jobs:
+               - Python-2.7
+               - pywin32
+              results:
+               - success
+   builders:
+      - batch: |
+            patch -N -p1 buildlibxml.py.patch
+            python setup.py build bdist_msi --static-deps

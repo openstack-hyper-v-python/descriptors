@@ -1,0 +1,33 @@
+- scm:
+   name: mysql-python-scm
+   scm:
+      - git:
+         url: git://github.com/openstack-hyper-v-python/mysql-python.git
+         branches:
+            - master
+
+- job:
+   name: mysql-python
+   properties:
+      - github:
+         url: https://github.com/openstack-hyper-v-python/mysql-python
+   project-type: freestyle
+   defaults: global
+   disabled: false
+   scm:
+      - mysql-python-scm
+   triggers:
+      - github
+      - build-result:
+         combine: true
+         cron: 'H/5 * * * *'
+         groups:
+            - jobs:
+               - Python-2.7
+               - pywin32
+               - setuptools
+              results:
+               - success
+   builders:
+      - batch: |
+            python setup.py build bdist_msi

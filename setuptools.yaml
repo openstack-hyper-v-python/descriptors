@@ -1,0 +1,33 @@
+- scm:
+   name: setuptools-scm
+   scm:
+      - git:
+         url: git://github.com/openstack-hyper-v-python/setuptools.git
+         branches:
+            - master
+
+- job:
+   name: setuptools
+   properties:
+      - github:
+         url: https://github.com/openstack-hyper-v-python/setuptools
+   project-type: freestyle
+   defaults: global
+   disabled: false
+   scm:
+      - setuptools-scm
+   triggers:
+      - github
+      - build-result:
+         combine: true
+         cron: 'H/5 * * * *'
+         groups:
+            - jobs:
+               - Python-2.7
+               - pywin32
+              results:
+               - success
+   builders:
+      - batch: |
+            python setup.py build bdist_msi
+            python setup.py install

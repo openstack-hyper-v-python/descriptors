@@ -1,0 +1,32 @@
+- scm:
+   name: pycrypto-scm
+   scm:
+      - git:
+         url: git://github.com/openstack-hyper-v-python/pycrypto.git
+         branches:
+            - master
+
+- job:
+   name: pycrypto
+   properties:
+      - github:
+         url: https://github.com/openstack-hyper-v-python/pycrypto
+   project-type: freestyle
+   defaults: global
+   disabled: false
+   scm:
+      - pycrypto-scm
+   triggers:
+      - github
+      - build-result:
+         combine: true
+         cron: 'H/5 * * * *'
+         groups:
+            - jobs:
+               - Python-2.7
+               - pywin32
+              results:
+               - success
+   builders:
+      - batch: |
+            python setup.py build bdist_msi

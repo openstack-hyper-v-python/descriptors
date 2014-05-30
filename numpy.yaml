@@ -1,0 +1,33 @@
+- scm:
+   name: numpy-scm
+   scm:
+      - git:
+         url: git://github.com/openstack-hyper-v-python/numpy.git
+         branches:
+            - master
+
+- job:
+   name: numpy
+   properties:
+      - github:
+         url: https://github.com/openstack-hyper-v-python/numpy
+   project-type: freestyle
+   defaults: global
+   disabled: false
+   scm:
+      - numpy-scm
+   triggers:
+      - github
+      - build-result:
+         combine: true
+         cron: 'H/5 * * * *'
+         groups:
+            - jobs:
+               - Python-2.7
+               - pywin32
+               - cython
+              results:
+               - success
+   builders:
+      - batch: |
+            python setup.py build bdist_wininst

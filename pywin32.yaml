@@ -1,0 +1,32 @@
+- scm:
+   name: pywin32-scm
+   scm:
+      - git:
+         url: git://github.com/openstack-hyper-v-python/pywin32.git
+         branches:
+            - master
+
+- job:
+   name: pywin32
+   properties:
+      - github:
+         url: https://github.com/openstack-hyper-v-python/pywin32
+   project-type: freestyle
+   defaults: global
+   disabled: false
+   scm:
+      - pywin32-scm
+   triggers:
+      - github
+      - build-result:
+         combine: true
+         cron: 'H/5 * * * *'
+         groups:
+            - jobs:
+               - Python-2.7
+              results:
+               - success
+   builders:
+      - batch: |
+            python setup.py -q install
+            python setup.py build bdist_msi

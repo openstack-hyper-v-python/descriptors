@@ -1,0 +1,32 @@
+- scm:
+   name: M2crypto-scm
+   scm:
+      - git:
+         url: git://github.com/openstack-hyper-v-python/M2crypto.git
+         branches:
+            - master
+
+- job:
+   name: M2crypto
+   properties:
+      - github:
+         url: https://github.com/openstack-hyper-v-python/M2crypto
+   project-type: freestyle
+   defaults: global
+   disabled: false
+   scm:
+      - M2crypto-scm
+   triggers:
+      - github
+      - build-result:
+         combine: true
+         cron: 'H/5 * * * *'
+         groups:
+            - jobs:
+               - Python-2.7
+               - pywin32
+              results:
+               - success
+   builders:
+      - batch: |
+            python setup.py build bdist_msi

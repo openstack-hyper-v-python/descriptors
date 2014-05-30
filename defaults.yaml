@@ -1,0 +1,3 @@
+- defaults:
+   name: global
+   description: "Openstack Hyper-V Python Modules"

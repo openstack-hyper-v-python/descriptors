@@ -1,0 +1,28 @@
+- scm:
+   name: Python-2.7-scm
+   scm:
+      - git:
+         url: git://github.com/openstack-hyper-v-python/Python-2.7.git
+         branches:
+            - master
+
+- job:
+   name: Python-2.7
+   properties:
+      - github:
+         url: https://github.com/openstack-hyper-v-python/Python-2.7
+   project-type: freestyle
+   defaults: global
+   disabled: false
+   scm:
+      - Python-2.7-scm
+   triggers:
+      - github
+   builders:
+      - batch: |
+         call "%VS90COMNTOOLS%\..\..\VC\vcvarsall.bat" x86
+         set compiler=%VS90COMNTOOLS%\..\IDE\devenv
+         call "%WORKSPACE%\Tools\buildbot\external-common.bat"
+         call "%WORKSPACE%\Tools\buildbot\external.bat"
+         %compiler% "%WORKSPACE%\PCbuild\pcbuild.sln" /build "Release|Win32"
+         call "%WORKSPACE%\install.bat"
