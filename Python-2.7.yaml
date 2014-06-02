@@ -24,5 +24,5 @@
          set compiler=%VS90COMNTOOLS%\..\IDE\devenv
          call "%WORKSPACE%\Tools\buildbot\external-common.bat"
          call "%WORKSPACE%\Tools\buildbot\external.bat"
-         %compiler% "%WORKSPACE%\PCbuild\pcbuild.sln" /build "Release|Win32"
+         %compiler% /useenv "%WORKSPACE%\PCbuild\pcbuild.sln" /build "Release|Win32"
          call "%WORKSPACE%\install.bat"
