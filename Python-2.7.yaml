@@ -21,8 +21,7 @@
    builders:
       - batch: |
          call "%VS90COMNTOOLS%\..\..\VC\vcvarsall.bat" x86
-         set compiler=%VS90COMNTOOLS%\..\IDE\devenv
          call "%WORKSPACE%\Tools\buildbot\external-common.bat"
          call "%WORKSPACE%\Tools\buildbot\external.bat"
-         %compiler% /useenv "%WORKSPACE%\PCbuild\pcbuild.sln" /build "Release|Win32"
+         msbuild.exe "%WORKSPACE%"\PCbuild\pcbuild.sln /p:Configuration="Release" /p:Platform="Win32"
          call "%WORKSPACE%\install.bat"
