@@ -20,11 +20,12 @@
       - github
       - build-result:
          combine: true
-         cron: 'H/5 * * * *'
+         cron: '/1 * * * *'
          groups:
             - jobs:
                - Python-2.7
                - pywin32
+               - setuptools
               results:
                - success
    builders:
