@@ -30,4 +30,4 @@
                - success
    builders:
       - batch: |
-            python setup.py build bdist_wininst
+            python setup.py build bdist_msi
