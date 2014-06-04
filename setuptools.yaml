@@ -20,7 +20,7 @@
       - github
       - build-result:
          combine: true
-         cron: 'H/3 * * * *'
+         cron: 'H/2 * * * *'
          groups:
             - jobs:
                - Python-2.7
