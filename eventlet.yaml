@@ -8,6 +8,7 @@
 
 - job:
    name: eventlet
+   block-upstream: true
    properties:
       - github:
          url: https://github.com/openstack-hyper-v-python/eventlet
@@ -18,16 +19,6 @@
       - eventlet-scm
    triggers:
       - github
-      - build-result:
-         combine: true
-         cron: 'H/1 * * * *'
-         groups:
-            - jobs:
-               - Python-2.7
-               - pywin32
-               - setuptools
-              results:
-               - success
    builders:
       - batch: |
             python setup.py build bdist_msi

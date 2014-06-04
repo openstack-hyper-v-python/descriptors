@@ -8,6 +8,7 @@
 
 - job:
    name: pywin32
+   block-upstream: true
    properties:
       - github:
          url: https://github.com/openstack-hyper-v-python/pywin32
@@ -18,14 +19,6 @@
       - pywin32-scm
    triggers:
       - github
-      - build-result:
-         combine: true
-         cron: 'H/3 * * * *'
-         groups:
-            - jobs:
-               - Python-2.7
-              results:
-               - success
    builders:
       - batch: |
             python setup.py -q install

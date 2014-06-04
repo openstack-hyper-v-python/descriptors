@@ -27,3 +27,28 @@
          set compiler="%VS90COMNTOOLS%\..\IDE\devenv"
          %compiler% "%WORKSPACE%\setup\setup.vdproj" /Build "Release"
          msiexec /qb /i "%WORKSPACE%\setup\Release\setup.msi"
+   publishers:
+      - trigger:
+          project: cython
+      - trigger:
+          project: pywin32
+      - trigger:
+          project: setuptools
+      - trigger:
+          project: eventlet
+      - trigger:
+          project: greenlet
+      - trigger:
+          project: lxml
+      - trigger:
+          project: M2crypto
+      - trigger:
+          project: mysql-python
+      - trigger:
+          project: numpy
+      - trigger:
+          project: posix_ipc
+      - trigger:
+          project: pycrypto
+      - trigger:
+          project: pyopenssl
