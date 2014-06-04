@@ -2,6 +2,7 @@
    name: Python-2.7-scm
    scm:
       - git:
+         wipe-workspace: false
          url: git://github.com/openstack-hyper-v-python/Python-2.7.git
          branches:
             - master
@@ -26,7 +27,8 @@
          msbuild.exe "%WORKSPACE%"\PCbuild\pcbuild.sln /p:Configuration="Release" /p:Platform="Win32"
          set compiler="%VS90COMNTOOLS%\..\IDE\devenv"
          %compiler% "%WORKSPACE%\setup\setup.vdproj" /Build "Release"
-         msiexec /qb /i "%WORKSPACE%\setup\Release\setup.msi"
+         msiexec /i {2404FC27-31FD-4910-A321-30CEF4F29A3E} /qn REMOVE=ALL
+         msiexec /i "%WORKSPACE%\setup\Release\setup.msi" /qn
    publishers:
       - trigger:
           project: cython
