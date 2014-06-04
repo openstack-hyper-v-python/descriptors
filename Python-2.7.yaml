@@ -39,13 +39,7 @@
       - trigger:
           project: greenlet
       - trigger:
-          project: lxml
-      - trigger:
           project: M2crypto
-      - trigger:
-          project: mysql-python
-      - trigger:
-          project: numpy
       - trigger:
           project: posix_ipc
       - trigger:

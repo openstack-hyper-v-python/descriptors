@@ -23,3 +23,8 @@
       - batch: |
             python setup.py build bdist_msi
             python setup.py install
+   publishers:
+      - trigger:
+          project: lxml
+      - trigger:
+          project: numpy
