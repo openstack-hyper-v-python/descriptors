@@ -2,6 +2,7 @@
    name: numpy-scm
    scm:
       - git:
+         wipe-workspace: false
          url: git://github.com/openstack-hyper-v-python/numpy.git
          branches:
             - master

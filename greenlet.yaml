@@ -2,6 +2,7 @@
    name: greenlet-scm
    scm:
       - git:
+         wipe-workspace: false
          url: git://github.com/openstack-hyper-v-python/greenlet.git
          branches:
             - master

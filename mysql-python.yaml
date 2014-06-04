@@ -2,6 +2,7 @@
    name: mysql-python-scm
    scm:
       - git:
+         wipe-workspace: false
          url: git://github.com/openstack-hyper-v-python/mysql-python.git
          branches:
             - master

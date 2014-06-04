@@ -2,6 +2,7 @@
    name: cython-scm
    scm:
       - git:
+         wipe-workspace: false
          url: git://github.com/openstack-hyper-v-python/cython.git
          branches:
             - master

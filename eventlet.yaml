@@ -2,6 +2,7 @@
    name: eventlet-scm
    scm:
       - git:
+         wipe-workspace: false
          url: git://github.com/openstack-hyper-v-python/eventlet.git
          branches:
             - master

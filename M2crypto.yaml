@@ -2,6 +2,7 @@
    name: M2crypto-scm
    scm:
       - git:
+         wipe-workspace: false
          url: git://github.com/openstack-hyper-v-python/M2crypto.git
          branches:
             - master

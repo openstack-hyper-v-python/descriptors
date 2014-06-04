@@ -2,6 +2,7 @@
    name: pycrypto-scm
    scm:
       - git:
+         wipe-workspace: false
          url: git://github.com/openstack-hyper-v-python/pycrypto.git
          branches:
             - master
